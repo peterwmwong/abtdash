@@ -1,0 +1,206 @@
+@import 'mixins/border';
+@import 'mixins/box';
+@import 'mixins/colors';
+@import 'mixins/gradient';
+@import 'mixins/pos';
+@import 'mixins/transition';
+@import 'mixins/text';
+@import 'mixins/triangle';
+
+.DashboardStory
+  color text-color
+  font-family Helvetica, Arial, sans-serif
+  position relative
+  border-bottom 1px solid rgba(#000,.3)
+  border-top 1px solid rgba(#888,.25)
+  gradient lighten(#333,5%), #333
+
+  &:hover
+    gradient lighten(#333,9%), lighten(#333,5%)
+    border-top 1px solid rgba(#FFF,.15)
+    border-bottom 1px solid rgba(#000,.7)
+
+    > .header
+      .chumps
+        color lighten(text-disabled-color,90%)
+
+      > .nameContainer > .name
+        color lighten(text-disabled-color,50%)
+        font-weight bold
+
+  &.selected
+    gradient lighten(#333,10%), lighten(#333,10%)
+    border-top 2px solid #579
+    border-bottom 1px solid rgba(#000,.55)
+    > .header
+      > .collapseStory
+        width 35px
+
+      > .chumps
+        font-weight bold
+        color lighten(text-disabled-color,90%)
+
+      > .nameContainer > .name
+        color lighten(text-disabled-color,90%)
+        font-weight bold
+        text-shadow 0px -1px 0px #222
+
+    > .details
+      display block
+      min-height 70px
+
+  > .header
+    box horizontal
+    box-align center
+    height 45px
+    position relative
+    width 100%
+
+    > .storyID
+      border-radius 3px
+      box-shadow 0px 1px 1px rgba(0,0,0,.3)
+      font-size 20px
+      font-weight bold
+      margin 0 8px 0 0px
+      padding 3px 5px 2px 5px
+      text-align center
+
+      bgout(color)
+        background-color desaturate(darken(color,10%),10%)
+        text-shadow 0px -1px 0px rgba(0,0,0,.3)
+
+      &.gray
+        bgout badge-gray
+
+      &.red
+        bgout lighten(saturate(badge-red,10%),10%)
+
+      &.green
+        bgout desaturate(badge-green,30%)
+
+      &.yellow
+        bgout lighten(badge-yellow,0%)
+
+    > .InitialsList
+      font-size 10px
+      vertical-align top
+      padding-top 2px
+      margin 0 15px 0 10px
+
+    > .LabeledCounts
+      margin 0 5px 0 0
+      min-width 100px
+
+      &.owner
+        min-width 30px
+        color #EEE
+
+      .codeCompletePct
+        font-size 9px
+        margin-left 2px
+
+    // Remove this container when Firefox gets fixes...
+    // http://oli.jp/bugs/mozilla/flexbox-overflow.html
+    > .nameContainer
+      box-flex 1
+      position relative
+      overflow hidden
+      height 25px
+      margin-right 10px
+
+      > a.name
+        abspos 6px 0px 0px 0px
+        color text-disabled-color
+        display block
+        font-size 15px
+        font-weight bold
+        padding 0 5px 0 3px
+        text-shadow 0px -1px 0px rgba(0,0,0,.5)
+        text-decoration none
+        overflow hidden
+        white-space nowrap
+        text-overflow ellipsis
+
+        &:hover
+          color text-color
+          text-decoration underline
+
+    > .chumps
+      text-shadow 0px -1px 0px rgba(0,0,0,.5)
+      color text-disabled-color
+      font-size 10px
+      padding-right 10px
+      text-align right
+
+      .currentUser
+        text-shadow none
+        color text-color
+        padding 2px 5px 1px 5px
+
+    > .collapseStory
+      position relative
+      transition width 250ms ease-in-out
+      overflow hidden
+
+      iconColor = darken(text-disabled-color,30%)
+      iconColor-light = text-color-dark
+      iconLeft = 12px
+      width 8px
+      height 35px
+    
+      &:hover
+        > .rect
+          background-color iconColor-light
+        > .triangle
+          triangle up 7px iconColor-light #333
+      
+      > .rect
+        abspos 21px false false iconLeft
+
+        background-color iconColor
+        width 14px
+        height 3px
+
+      > .triangle
+        abspos 4px 0px false iconLeft
+
+        height 20px
+        triangle up 7px iconColor #444
+
+
+  > .details
+    background-color shadow-color
+    height 0px
+    position relative
+    overflow hidden
+    transition height 500ms ease-in-out
+    z-index 1
+
+    &:before
+      content ""
+      abspos -2px 0px false 0px
+      height 1px
+      box-shadow 0px 2px 6px #000
+      z-index 50
+
+    &:after
+      content ""
+      abspos false 0px -2px 0px
+      height 1px
+      box-shadow 0px 0px 7px #000
+      z-index 50
+
+    > .LoadingIndicator
+      abspos 15px 0px 0px 0px
+      
+    > .contents > .detail
+      overflow hidden
+
+      z-index -1
+      transition opacity 500ms ease-in-out
+      abspos 0px 0px 0px 0px
+      display none
+
+      &.selected
+        position static
+        display block

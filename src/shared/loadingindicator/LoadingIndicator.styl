@@ -1,0 +1,36 @@
+@import 'mixins/animation';
+@import 'mixins/pos';
+@import 'mixins/gradient';
+@import 'mixins/transition';
+
+c = desaturate(#3672BF,10%)
+c1 = rgba(lighten(c,60%),.5)
+c2 = rgba(lighten(c,100%),.8)
+
+.LoadingIndicator
+  color #A2ADB5
+  border-radius 5px
+  box-shadow 0px 1px 3px rgba(#000,.15)
+  display none
+  font-weight bold
+  font-size 16px
+  gradient rgba(c,.4), rgba(c,.1)
+  height 36px
+  line-height 36px
+  letter-spacing 1px
+  margin 0 auto
+  overflow hidden
+  text-align center
+  transition-property opacity
+  transition-duration 350ms
+  transition-timing-function ease-out
+  width 110px
+  padding 3px 0 0 26px
+  position relative
+
+  > .loaderIcon
+    abspos 12px 0px 0px 22px
+
+  &.enableLoading
+    display block
+

@@ -1,0 +1,154 @@
+@import 'mixins/pos'
+@import 'mixins/badge'
+@import 'mixins/box'
+@import 'mixins/border'
+@import 'mixins/colors'
+@import 'mixins/transition'
+@import 'mixins/ui-button'
+
+.AEDInput
+  box horizontal
+  box-align center
+  height 30px
+
+  > .inputGroup
+    box-flex 1
+    position relative
+    margin-right 10px
+
+    > input
+      background none
+      border-radius 3px
+      display block
+      color text-color
+      border none
+      box-sizing border-box
+      font-size 14px
+      outline none
+      padding 0px 10px 0px 7px
+      margin-right 10px
+      height 24px
+      width 100%
+
+      &:focus, &:hover:focus
+        background-color rgba(#FFF,.05)
+
+      &:hover
+        background-color rgba(#FFF,.025)
+
+      &::-webkit-input-placeholder
+      &::-moz-placeholder
+        color rgba(#FFF,.3)
+        font-style italic
+
+    > .saveButtonMask
+      position relative
+      abspos 0px 0px 0px false
+      
+      > .saveButton
+        button()
+        box-shadow none
+        color #BBB
+        gradient rgba(#6D6,.3), rgba(#6D6,.1)
+        line-height 24px
+
+        .label-save, .label-saving
+          visibility hidden
+          abspos 0px 0px 0px 0px
+
+      &.save
+        width 70px
+        .label-save
+          visibility visible
+
+      &.saving
+        width 70px
+        .label-save
+          visibility visible
+
+  > .deleteButton
+    width 20px
+    height 18px
+    line-height 30px
+    overflow hidden
+    transition width 250ms ease-in-out
+    cursor pointer
+    position relative
+
+    &.confirm
+      button()
+      width 140px
+      line-height 20px
+
+      > .label
+        visibility visible
+
+      &:hover > .trash, > .trash
+        abspos 8px false false 8px
+        &:after, &:before, > a:before, > a:after
+          top 5px
+          border-color #DFDFDF
+
+      &:active:hover
+        gradient rgba(#F88,.1), rgba(#F55,.35)
+
+      &:hover
+        color #FFF
+        gradient rgba(#F55,.35), rgba(#F88,.1)
+
+    &:hover > .trash
+      &:after, > a:before, > a:after
+        border-color #CCC
+    
+    > .label
+      abspos -2px 10px 0px false
+      line-height 28px
+      visibility hidden
+      width 140px
+      text-align right
+
+    > .trash
+      abspos 8px false false 0px
+      icon-color = darken(text-disabled-color,30%)
+      margin 0 0 0 2px
+      z-index 1
+
+      &:after, &:before, > a:before, > a:after
+        content ''
+        top 2px
+
+      &:after
+        left 6px
+        width 1px
+        height 6px
+        border-right 3px double icon-color
+        border-left 1px solid icon-color
+        margin-top -2px
+        position absolute
+
+      > a
+        display block
+        &:before
+          left 2px
+          width 9px
+          height 9px
+          margin-top -6px
+          border 2px solid icon-color
+          background transparent
+          position absolute
+
+        &:after
+          left 5px
+          width 3px
+          height 2px
+          margin-top -9px
+          border 2px solid icon-color
+          border-bottom 0
+          background transparent
+          position absolute
+
+          /* css3 */
+          -webkit-border-top-left-radius 2px
+          -webkit-border-top-right-radius 2px
+          -moz-border-radius 2px 2px 0 0
+          border-radius 2px 2px 0 0

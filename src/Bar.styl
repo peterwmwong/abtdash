@@ -1,0 +1,50 @@
+@import 'mixins/border'
+@import 'mixins/box'
+@import 'mixins/colors'
+@import 'mixins/gradient'
+@import 'mixins/pos'
+@import 'mixins/transition'
+
+.Bar
+  gradient lighten(#36729F,10%) darken(#36729F,30%) 
+  box-shadow 0 1px 3px #222
+
+  font-family 'Maven Pro', Helvetica, Arial, sans-serif
+  letter-spacing 1px
+  font-size 10px
+  font-weight 900
+  line-height 17px
+  text-shadow 0 -1px 0 rgba(#000,.3)
+  padding 0 0 0 200px
+
+  > #xoltop
+    abspos 2px false false 20px
+    color rgba(#FFF,.8)
+    font-size 14px
+
+  > .navItemContainer
+    text-align center
+    display inline-block
+
+    > .navItem
+      display inline-block
+      border-radius 3px
+      color text-color
+      cursor pointer
+      margin-top 3px
+      padding 0px 6px 0px 7px
+      text-decoration none
+      transition opacity 250ms ease
+      opacity .6
+
+      &:hover
+        opacity 1
+
+      &.selected, &.selected:hover
+        opacity 1
+        box-shadow inset 0px 1px 2px rgba(#000,.5)
+        background-color rgba(#000,.3)
+
+  > .SignIn
+    float right
+    margin 0 5px 0 0
